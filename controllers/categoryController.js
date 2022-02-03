@@ -10,4 +10,10 @@ const add = rescue(async (req, res) => {
   res.status(201).json(category);
 });
 
-module.exports = { add };
+const getAll = rescue(async (req, res) => {
+  const categories = await categoryService.getAll();
+
+  res.status(200).json(categories);
+});
+
+module.exports = { add, getAll };

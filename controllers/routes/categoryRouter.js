@@ -10,4 +10,10 @@ Category.post(
   categoryController.add,
 );
 
+Category.get(
+  '/',
+  jwtMiddleware.validateJWT,
+  categoryController.getAll,
+);
+
 module.exports = Category;
