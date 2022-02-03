@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 
-const userRouter = require('./controllers/routes/userRouter');
+const { loginRouter, userRouter } = require('./controllers/routes');
 const { domainError, serverError } = require('./controllers/middlewares');
 
 const app = express();
@@ -13,6 +13,7 @@ app.get('/', (request, response) => {
 });
 
 app.use('/user', userRouter);
+app.use('/login', loginRouter);
 
 app.use(domainError);
 app.use(serverError);
