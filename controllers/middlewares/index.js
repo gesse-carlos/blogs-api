@@ -3,6 +3,7 @@ const serverError = require('./server-error');
 const jwtMiddleware = require('./jwtMiddleware');
 const loginMiddlewares = require('./loginMiddlewares');
 const userMiddlewares = require('./userMiddlewares');
+const categoryMiddlewares = require('./categoryMiddlewares');
 
 module.exports = {
   domainError,
@@ -10,4 +11,5 @@ module.exports = {
   jwtMiddleware,
   loginMiddlewares,
   userMiddlewares,
+  categoryMiddlewares,
 };

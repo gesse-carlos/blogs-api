@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 require('dotenv/config');
 
-const { loginRouter, userRouter } = require('./controllers/routes');
+const { loginRouter, userRouter, categoryRouter } = require('./controllers/routes');
 const { domainError, serverError } = require('./controllers/middlewares');
 
 const app = express();
@@ -15,6 +15,7 @@ app.get('/', (request, response) => {
 
 app.use('/user', userRouter);
 app.use('/login', loginRouter);
+app.use('/categories', categoryRouter);
 
 app.use(domainError);
 app.use(serverError);
