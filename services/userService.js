@@ -9,13 +9,8 @@ const add = async (displayName, email, password, image) => {
     image,
   });
 
-  const data = {
-    displayName,
-    email,
-  };
-
-  const token = jwt.sign({ data });
-
+  const token = jwt.sign({ displayName });
+  console.log(token);
   return token;
 };
 
