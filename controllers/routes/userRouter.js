@@ -1,6 +1,6 @@
 const User = require('express').Router();
 
-const userMiddlewares = require('../middlewares/userMiddlewares');
+const { userMiddlewares, jwtMiddleware } = require('../middlewares');
 const userController = require('../userController');
 
 User.post(
@@ -9,6 +9,12 @@ User.post(
   userMiddlewares.validateEmail,
   userMiddlewares.validatePassword,
   userController.add,
+);
+
+User.get(
+  '/',
+  jwtMiddleware.validateJWT,
+  userController.getAll,
 );
 
 module.exports = User;

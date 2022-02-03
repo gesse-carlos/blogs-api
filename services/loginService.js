@@ -1,6 +1,6 @@
 const jwt = require('../utils/jwt');
 
-const login = async (email) => {
+const login = (email) => {
   const token = jwt.sign({ email });
   return token;
 };

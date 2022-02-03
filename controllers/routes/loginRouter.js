@@ -1,6 +1,6 @@
 const Login = require('express').Router();
 
-const loginMiddlewares = require('../middlewares/loginMiddlewares');
+const { loginMiddlewares } = require('../middlewares');
 const loginController = require('../loginController');
 
 Login.post(

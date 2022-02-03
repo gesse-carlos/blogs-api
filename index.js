@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+require('dotenv/config');
 
 const { loginRouter, userRouter } = require('./controllers/routes');
 const { domainError, serverError } = require('./controllers/middlewares');
