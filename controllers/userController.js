@@ -12,7 +12,7 @@ const add = rescue(async (req, res) => {
 
 const getAll = rescue(async (req, res) => {
   const users = await userService.getAll();
-  return res.status(200).json(users);
+  res.status(200).json(users);
 });
 
 module.exports = { add, getAll };
