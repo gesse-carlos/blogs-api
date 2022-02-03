@@ -1,8 +1,8 @@
 const jwt = require('../utils/jwt');
-const { User } = require('../models');
+const { Users } = require('../models');
 
 const add = async (displayName, email, password, image) => {
-  await User.create({
+  await Users.create({
     displayName,
     email,
     password,
