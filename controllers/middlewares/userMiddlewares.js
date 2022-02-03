@@ -1,4 +1,4 @@
-const { User } = require('../../models');
+const { Users } = require('../../models');
 
 const validateName = (req, res, next) => {
   const { displayName } = req.body;
@@ -15,7 +15,7 @@ const validateName = (req, res, next) => {
 const validateEmail = async (req, res, next) => {
   const { email } = req.body;
 
-  const user = await User.findOne({ where: { email } });
+  const user = await Users.findOne({ where: { email } });
 
   if (user) return res.status(409).json({ message: 'User already registered' });
 
