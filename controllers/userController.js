@@ -15,4 +15,12 @@ const getAll = rescue(async (req, res) => {
   res.status(200).json(users);
 });
 
-module.exports = { add, getAll };
+const getById = rescue(async (req, res) => {
+  const user = await userService.getById(req.params.id);
+
+  if (!user) return res.status(404).json({ message: 'User does not exist' });
+
+  res.status(200).json(user);
+});
+
+module.exports = { add, getAll, getById };

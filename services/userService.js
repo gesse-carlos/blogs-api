@@ -19,4 +19,10 @@ const getAll = async () => {
   return users;
 };
 
-module.exports = { add, getAll };
+const getById = async (id) => {
+  const user = await Users.findByPk(id);
+
+  return user;
+};
+
+module.exports = { add, getAll, getById };

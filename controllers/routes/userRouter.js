@@ -17,4 +17,10 @@ User.get(
   userController.getAll,
 );
 
+User.get(
+  '/:id',
+  jwtMiddleware.validateJWT,
+  userController.getById,
+);
+
 module.exports = User;
