@@ -37,4 +37,10 @@ const update = rescue(async (req, res) => {
   res.status(200).json(post);
 });
 
-module.exports = { add, getAll, getById, update };
+const remove = rescue(async (req, res) => {
+  await blogPostService.remove(req.params.id);
+
+  res.status(204).end();
+});
+
+module.exports = { add, getAll, getById, update, remove };

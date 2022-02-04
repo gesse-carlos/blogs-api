@@ -51,4 +51,6 @@ const update = async (id, title, content) => {
   return post;
 };
 
-module.exports = { add, getAll, getById, update };
+const remove = async (id) => BlogPosts.destroy({ where: { id } });
+
+module.exports = { add, getAll, getById, update, remove };
