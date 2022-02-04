@@ -28,4 +28,13 @@ const getById = rescue(async (req, res) => {
   res.status(200).json(post);
 });
 
-module.exports = { add, getAll, getById };
+const update = rescue(async (req, res) => {
+  const { id } = req.params;
+  const { title, content } = req.body;
+
+  const post = await blogPostService.update(id, title, content);
+
+  res.status(200).json(post);
+});
+
+module.exports = { add, getAll, getById, update };

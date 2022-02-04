@@ -36,4 +36,19 @@ const getById = async (id) => {
   return post;
 };
 
-module.exports = { add, getAll, getById };
+const update = async (id, title, content) => {
+  await BlogPosts.update(
+    { title, content },
+    { where: { id } },
+  );
+
+  const post = await BlogPosts.findByPk(id, {
+    include: {
+      model: Categories, as: 'categories', through: { attributes: [] },
+    },
+  });
+
+  return post;
+};
+
+module.exports = { add, getAll, getById, update };

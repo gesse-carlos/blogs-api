@@ -1,8 +1,8 @@
-const { Categories } = require('../../models');
+const { Categories, BlogPosts } = require('../../models');
 const checkCategories = require('../../utils/checkCategories');
 
-const validateCategory = async (req, res, next) => {
-  const { title, categoryIds, content } = req.body;
+const validateTitleContent = async (req, res, next) => {
+  const { title, content } = req.body;
 
   if (!title) {
     return res.status(400).json({ message: '"title" is required' });
@@ -11,6 +11,12 @@ const validateCategory = async (req, res, next) => {
   if (!content) {
     return res.status(400).json({ message: '"content" is required' });
   }
+
+  next();
+};
+
+const validateCategory = async (req, res, next) => {
+  const { categoryIds } = req.body;
 
   if (!categoryIds) {
     return res.status(400).json({ message: '"categoryIds" is required' });
@@ -26,4 +32,20 @@ const validateCategory = async (req, res, next) => {
   next();
 };
 
-module.exports = { validateCategory };
+const validateUpdate = async (req, res, next) => {
+  if (req.body.categoryIds) {
+    return res.status(400).json({ message: 'Categories cannot be edited' });
+  }
+
+  const { id } = req.params;
+
+  const post = await BlogPosts.findByPk(id);
+
+  if (post.userId !== req.user.id) {
+    return res.status(401).json({ message: 'Unauthorized user' });
+  }
+
+  next();
+};
+
+module.exports = { validateTitleContent, validateCategory, validateUpdate };

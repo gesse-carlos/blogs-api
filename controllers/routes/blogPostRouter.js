@@ -6,6 +6,7 @@ const { blogPostMiddlewares, jwtMiddleware } = require('../middlewares');
 BlogPost.post(
   '/',
   jwtMiddleware.validateJWT,
+  blogPostMiddlewares.validateTitleContent,
   blogPostMiddlewares.validateCategory,
   blogPostController.add,
 );
@@ -20,6 +21,14 @@ BlogPost.get(
   '/:id',
   jwtMiddleware.validateJWT,
   blogPostController.getById,
+);
+
+BlogPost.put(
+  '/:id',
+  jwtMiddleware.validateJWT,
+  blogPostMiddlewares.validateTitleContent,
+  blogPostMiddlewares.validateUpdate,
+  blogPostController.update,
 );
 
 module.exports = BlogPost;
