@@ -26,9 +26,9 @@ const getById = async (id) => {
 };
 
 const getByEmail = async (email) => {
-  const user = await Users.findAll({ where: { email } });
+  const user = await Users.findOne({ where: { email } });
 
-  return user[0].dataValues;
+  return user.dataValues;
 };
 
 module.exports = { add, getAll, getById, getByEmail };
