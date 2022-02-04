@@ -48,4 +48,16 @@ const validateUpdate = async (req, res, next) => {
   next();
 };
 
-module.exports = { validateTitleContent, validateCategory, validateUpdate };
+const validateDelete = async (req, res, next) => {
+  const { id } = req.params;
+
+  const post = await BlogPosts.findByPk(id);
+
+  if (!post) {
+    return res.status(404).json({ message: 'Post does not exist' });
+  }
+
+  next();
+};
+
+module.exports = { validateTitleContent, validateCategory, validateUpdate, validateDelete };

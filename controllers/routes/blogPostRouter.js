@@ -31,4 +31,11 @@ BlogPost.put(
   blogPostController.update,
 );
 
+BlogPost.delete(
+  '/:id',
+  jwtMiddleware.validateJWT,
+  blogPostMiddlewares.validateDelete,
+  blogPostController.remove,
+);
+
 module.exports = BlogPost;

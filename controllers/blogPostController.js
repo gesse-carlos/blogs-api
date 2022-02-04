@@ -38,7 +38,14 @@ const update = rescue(async (req, res) => {
 });
 
 const remove = rescue(async (req, res) => {
-  await blogPostService.remove(req.params.id);
+  const { id } = req.params;
+  const post = await blogPostService.getById(id);
+
+  if (post.userId !== req.user.id) {
+    return res.status(401).json({ message: 'Unauthorized user' });
+  }
+
+  await blogPostService.remove(id);
 
   res.status(204).end();
 });
