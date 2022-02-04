@@ -23,4 +23,10 @@ User.get(
   userController.getById,
 );
 
+User.delete(
+  '/me',
+  jwtMiddleware.validateJWT,
+  userController.remove,
+);
+
 module.exports = User;
