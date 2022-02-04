@@ -18,6 +18,12 @@ BlogPost.get(
 );
 
 BlogPost.get(
+  '/search',
+  jwtMiddleware.validateJWT,
+  blogPostController.search,
+);
+
+BlogPost.get(
   '/:id',
   jwtMiddleware.validateJWT,
   blogPostController.getById,

@@ -1,3 +1,5 @@
+const { Op } = require('sequelize');
+
 const { BlogPosts, Users, Categories } = require('../models');
 
 const add = async (title, content, userData) => {
@@ -53,4 +55,30 @@ const update = async (id, title, content) => {
 
 const remove = async (id) => BlogPosts.destroy({ where: { id } });
 
-module.exports = { add, getAll, getById, update, remove };
+// https://sequelize.org/master/manual/model-querying-basics.html#operators
+const includeOptions = [
+  {
+    model: Users,
+    as: 'user',
+    attributes: ['id', 'displayName', 'email', 'image'],
+  },
+  {
+    model: Categories,
+    as: 'categories',
+    attributes: ['id', 'name'],
+    through: { attributes: [] },
+  },
+];
+
+const search = async ({ query }) =>
+  BlogPosts.findAll({
+    where: {
+      [Op.or]: [
+        { title: { [Op.substring]: query } },
+        { content: { [Op.substring]: query } },
+      ],
+    },
+    include: includeOptions,
+  });
+
+module.exports = { add, getAll, getById, update, remove, search };
