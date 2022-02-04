@@ -36,10 +36,10 @@ module.exports = {
           field: 'updated',
         },
       }
-    )
+    );
   },
 
   down: async (queryInterface, _Sequelize) => {
-    await queryInterface.dropTable('BlogPosts');
+    await queryInterface.dropTable('BlogPosts', null, {});
   }
 };
