@@ -51,12 +51,9 @@ const remove = rescue(async (req, res) => {
 });
 
 const search = rescue(async (req, res) => {
-  console.log(req.query);
   const { q } = req.query;
-  console.log(q);
 
   const posts = await blogPostService.search({ query: q });
-  console.log(posts);
 
   res.status(200).json(posts);
 });
