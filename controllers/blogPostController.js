@@ -10,4 +10,10 @@ const add = rescue(async (req, res) => {
   res.status(201).json(post);
 });
 
-module.exports = { add };
+const getAll = rescue(async (req, res) => {
+  const posts = await blogPostService.getAll();
+
+  res.status(200).json(posts);
+});
+
+module.exports = { add, getAll };

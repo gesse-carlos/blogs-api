@@ -10,4 +10,10 @@ BlogPost.post(
   blogPostController.add,
 );
 
+BlogPost.get(
+  '/',
+  jwtMiddleware.validateJWT,
+  blogPostController.getAll,
+);
+
 module.exports = BlogPost;
