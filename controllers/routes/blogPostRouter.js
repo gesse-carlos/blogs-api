@@ -16,4 +16,10 @@ BlogPost.get(
   blogPostController.getAll,
 );
 
+BlogPost.get(
+  '/:id',
+  jwtMiddleware.validateJWT,
+  blogPostController.getById,
+);
+
 module.exports = BlogPost;
